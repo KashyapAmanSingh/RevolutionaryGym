@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { fetchData, Exerciseoptions } from './ApiStore';
+import { useState, useEffect } from 'react';
+import { fetchData, Exerciseoptions } from './ApiFetch/ApiStore';
 import { useNavigate } from 'react-router-dom';
-import DetailShow from './Detail';
+
 
 const Searched = () => {
   const url = 'https://exercisedb.p.rapidapi.com/exercises';
   const [search, setSearch] = useState('');
   const [searchedExercise, setSearchedExercise] = useState([]);
   const [page, setPage] = useState(1);
-console.log(searchedExercise.length+'This is full length')
-console.log(searchedExercise.length)
+console.log(searchedExercise)
+// console.log(searchedExercise.length)
   const navigate = useNavigate();
 
   useEffect(() => {
