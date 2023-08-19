@@ -19,8 +19,9 @@ const Navbar = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="javascript:void(0)">Exercise</a>
                         </li>
+                     
                         <li className="nav-item">
-                            <a className="nav-link" href="javascript:void(0)">Blog</a>
+                            <a className="nav-link" href="https://todo-ts-orpin.vercel.app/">Note Todo </a>
                         </li>
                     </ul>
                     <form className="d-flex">
