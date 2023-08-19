@@ -8,8 +8,8 @@ const Searched = () => {
   const [search, setSearch] = useState('');
   const [searchedExercise, setSearchedExercise] = useState([]);
   const [page, setPage] = useState(1);
-console.log(searchedExercise)
-// console.log(searchedExercise.length)
+  // console.log(searchedExercise)
+  // console.log(searchedExercise.length)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,6 @@ console.log(searchedExercise)
         );
 
         setSearchedExercise(filteredData);
-        // setPage(1); // Reset the page when new search is performed
       } else {
         setSearchedExercise(AllData);
       }
@@ -70,58 +69,54 @@ console.log(searchedExercise)
       <div className="container mt-3">
         <div className="row">
           {searchedExercise.length > 0 && searchedExercise.slice(page * 10 - 10, page * 10).map((data) => (
-             <div key={data.id} className="col-sm-4 mb-3" onClick={() => handleCardClick(data.id)}>
-             <div className="card" style={{ width: '100%' }}>
-               <img loading="lazy" className="card-img-top" src={data.gifUrl} alt={data.bodyPart} />
-               <div className="card-body">
-                 <p className="card-text">{data.bodyPart}</p>
-                 <p className="card-text">{data.name}</p>
-                 <p className="card-text">{data.equipment}</p>
-                 <p className="card-text">{data.target}</p>
-                 <p className="card-text"> {data.id}</p>
-
-
-
-
-               </div>
-             </div>
-           </div>
+            <div key={data.id} className="col-sm-4 mb-3" onClick={() => handleCardClick(data.id)}>
+              <div className="card" style={{ width: '100%' }}>
+                <img loading="lazy" className="card-img-top" src={data.gifUrl} alt={data.bodyPart} />
+                <div className="card-body">
+                  <p className="card-text">{data.bodyPart}</p>
+                  <p className="card-text">{data.name}</p>
+                  <p className="card-text">{data.equipment}</p>
+                  <p className="card-text">{data.target}</p>
+                  <p className="card-text"> {data.id}</p>
+                    </div>
+              </div>
+            </div>
           ))}
         </div>
         {searchedExercise.length > 0 && (
-  <div className="row">
-    <nav>
-      <ul className="pagination justify-content-center">
-        <li className={`page-item ${page === 1 ? 'disabled' : ''}`}>
-          <a className="page-link" href="#" onClick={() => selectPageHandler(page - 1)}>Previous</a>
-        </li>
+          <div className="row">
+            <nav>
+              <ul className="pagination justify-content-center">
+                <li className={`page-item ${page === 1 ? 'disabled' : ''}`}>
+                  <a className="page-link" href="#" onClick={() => selectPageHandler(page - 1)}>Previous</a>
+                </li>
 
-         {/* Display first few page links */}
-        {[...Array(7)].map((empty, i) => (
-          <li key={page + i} className={`page-item ${page === page + i ? 'active' : ''}`}>
-            <a className="page-link" href="#" onClick={() => selectPageHandler(page + i)}>{page + i}</a>
-          </li>
-        ))}
+                {/* Display first few page links */}
+                {[...Array(7)].map((empty, i) => (
+                  <li key={page + i} className={`page-item ${page === page + i ? 'active' : ''}`}>
+                    <a className="page-link" href="#" onClick={() => selectPageHandler(page + i)}>{page + i}</a>
+                  </li>
+                ))}
 
 
- {/* Display ellipsis if there are more pages */}
- {Math.ceil(searchedExercise.length / 10) > 7 && (
-          <li className="page-item disabled">
-            <span className="page-link">...</span>
-          </li>
+                {/* Display ellipsis if there are more pages */}
+                {Math.ceil(searchedExercise.length / 10) > 7 && (
+                  <li className="page-item disabled">
+                    <span className="page-link">...</span>
+                  </li>
+                )}
+                {/* Display link to the last page */}
+                <li key={searchedExercise.length - 1} className={`page-item ${page === searchedExercise.length - 1 ? 'active' : ''}`}>
+                  <a className="page-link" href="#" onClick={() => selectPageHandler(searchedExercise.length - 1)}>{Math.ceil(searchedExercise.length / 10)}</a>
+                </li>
+
+                <li className={`page-item ${page === Math.ceil(searchedExercise.length / 10) ? 'disabled' : ''}`}>
+                  <a className="page-link" href="#" onClick={() => selectPageHandler(page + 1)}>Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         )}
-        {/* Display link to the last page */}
-        <li key={searchedExercise.length - 1} className={`page-item ${page === searchedExercise.length - 1 ? 'active' : ''}`}>
-          <a className="page-link" href="#" onClick={() => selectPageHandler(searchedExercise.length - 1)}>{Math.ceil(searchedExercise.length/10)}</a>
-        </li>
-
-        <li className={`page-item ${page === Math.ceil(searchedExercise.length / 10) ? 'disabled' : ''}`}>
-          <a className="page-link" href="#" onClick={() => selectPageHandler(page + 1)}>Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-)}
 
       </div>
     </div>

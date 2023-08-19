@@ -15,7 +15,7 @@ const Video = (props) => {
         youtubeOptions
       );
       setVideo(youtubeData.contents);
-      console.log('These are the videos:', youtubeData.contents);
+      // console.log('These are the videos:', youtubeData.contents);
     };
 
     fetchVideoData();
