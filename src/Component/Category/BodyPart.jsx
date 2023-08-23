@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import { fetchData, Exerciseoptions } from "../ApiFetch/ApiStore"; // Check this import
 
-// eslint-disable-next-line react/prop-types
-export  const BodyPart = ({ bodypart }) => {
+
+export const BodyPart = ({ bodypart }) => {
   const [BodyPart, setBodyPart] = useState(null);
-  // console.log( bodypart + "This is BodyPartBodyPartBodyPart");
+
   const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`;
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export  const BodyPart = ({ bodypart }) => {
       try {
         const AllBodyPart = await fetchData(url, Exerciseoptions);
         setBodyPart(AllBodyPart);
-        
+
       } catch (error) {
         console.log(error);
       }
@@ -23,21 +23,26 @@ export  const BodyPart = ({ bodypart }) => {
   }, [bodypart]);
 
 
-    if (BodyPart) {
-      BodyPart.slice(0,3).forEach(element => {
-        console.log(element.name + " This is for each BodyPart element.name");
-     
-      });
-    }
-  
-
   return (
-    <>
-      <div>BodyPart</div>
-      <h2>Bodypart Used: {bodypart}</h2>
-    </>
+    <div className="mt-5">
+      <h2>BodyPart Used: {bodypart.name}</h2>
+      <div className='container-fluid'>
+        <div className='row'>
+          {BodyPart &&
+            BodyPart.slice(0, 3).map((element, index) => (
+              <div key={index} className="col-sm-4">
+                <div className="exercise-card" >
+                  <img src={element.gifUrl} alt={element.name} />
+                  <h3>{element.name}</h3>
+                  <p>{element.bodyPart}</p>
+                  <p>{element.target}</p>
+                </div></div>
+            ))}
+        </div>
+      </div> </div>
   );
 };
+
 
 
 
