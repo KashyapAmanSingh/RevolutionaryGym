@@ -6,7 +6,7 @@ import { fetchData, Exerciseoptions } from "../ApiFetch/ApiStore";
 // eslint-disable-next-line react/prop-types
 export  const Equipment = ({ equipment }) => {
 
-console.log(equipment+"This is equipment bro ")
+// console.log(equipment+"This is equipment bro ")
 
 
 
@@ -14,18 +14,32 @@ console.log(equipment+"This is equipment bro ")
   const [equipmentData, setEquipmentData] = useState(null); // Use a different name for the state
 
   useEffect(() => {
+    try {
     const fetchEquipment = async () => { // Rename the async function
-      try {
+   
         const AllEquipmentData = await fetchData(url, Exerciseoptions);
         setEquipmentData(AllEquipmentData); // Update the state using setEquipmentData
-      } catch (error) {
+      }
+      fetchEquipment();
+    }
+      
+      catch (error) {
         console.log(error);
       }
-    };
+    
 
-    fetchEquipment();
+  
   }, [equipment]);
+  
+ 
+    if (equipmentData) {
+      equipmentData.slice(0,3).forEach(element => {
+        console.log(element.name + " This is for each equipmentData element.name");
+      
+      });
+    }
 
+  
   return (
     <div>
       <h2>Equipment Used: {equipment.name}</h2>

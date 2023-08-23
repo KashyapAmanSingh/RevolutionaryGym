@@ -8,8 +8,10 @@ export const Target = (props) => {
     console.log(target+"This is Target bro ")
 
     const url = `https://exercisedb.p.rapidapi.com/exercises/target/${target}`;
-    const [Target, setTarget] = useState(null);
-    console.log(Target + "This is Target");
+    const [targetData, setTarget] = useState(null);
+    // console.log(Target + "This is Target");
+
+
 
     useEffect(() => {
         try {
@@ -22,7 +24,17 @@ export const Target = (props) => {
             console.log(error);
         }
     }, [target]);
+    
+ 
+        if (targetData) {
+          targetData.slice(0,3).forEach(element => {
+            console.log(element.name + " This is for each targetData element.name");
+         
+          });
+        }
+  
 
+    
     return (
         <>
             <div>Target</div>

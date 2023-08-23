@@ -5,7 +5,7 @@ import { fetchData, Exerciseoptions } from "../ApiFetch/ApiStore"; // Check this
 // eslint-disable-next-line react/prop-types
 export  const BodyPart = ({ bodypart }) => {
   const [BodyPart, setBodyPart] = useState(null);
-  console.log( bodypart + "This is BodyPartBodyPartBodyPart");
+  // console.log( bodypart + "This is BodyPartBodyPartBodyPart");
   const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`;
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export  const BodyPart = ({ bodypart }) => {
       try {
         const AllBodyPart = await fetchData(url, Exerciseoptions);
         setBodyPart(AllBodyPart);
+        
       } catch (error) {
         console.log(error);
       }
@@ -21,10 +22,19 @@ export  const BodyPart = ({ bodypart }) => {
     fetchBodypart();
   }, [bodypart]);
 
+
+    if (BodyPart) {
+      BodyPart.slice(0,3).forEach(element => {
+        console.log(element.name + " This is for each BodyPart element.name");
+     
+      });
+    }
+  
+
   return (
     <>
       <div>BodyPart</div>
-      <h2>Bodypart Used: {bodypart.bodypart}</h2>
+      <h2>Bodypart Used: {bodypart}</h2>
     </>
   );
 };
