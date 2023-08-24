@@ -8,13 +8,12 @@ const Searched = () => {
   const [search, setSearch] = useState('');
   const [searchedExercise, setSearchedExercise] = useState([]);
   const [page, setPage] = useState(1);
-  // console.log(searchedExercise)
-  // console.log(searchedExercise.length)
+// console.log(searchedExercise  +'   searchedExercise');
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchAll();
-  }, []); // runs only on initial load
+  }, []); 
 
   const fetchAll = async () => {
     try {
@@ -36,9 +35,10 @@ const Searched = () => {
     }
   };
 
-  const handleCardClick = (id) => {
-    navigate(`./DetailShow/${id}`, { state: { id } });
+  const handleCardClick = (navigate, id) => {
+    navigate(`/DetailShow/${id}`, { state: { id } });
   };
+  
 
   const selectPageHandler = (selectedPage) => {
     if (selectedPage >= 1 && selectedPage <= Math.ceil(searchedExercise.length / 10) && selectedPage !== page) {
@@ -69,7 +69,7 @@ const Searched = () => {
       <div className="container mt-3">
         <div className="row">
           {searchedExercise.length > 0 && searchedExercise.slice(page * 10 - 10, page * 10).map((data) => (
-            <div key={data.id} className="col-sm-4 mb-3" onClick={() => handleCardClick(data.id)}>
+            <div key={data.id} className="col-sm-4 mb-3"onClick={() => handleCardClick(navigate,data.id)}>
               <div className="card" style={{ width: '100%' }}>
                 <img loading="lazy" className="card-img-top" src={data.gifUrl} alt={data.bodyPart} />
                 <div className="card-body">
