@@ -5,6 +5,7 @@ import { fetchData, Exerciseoptions } from "../ApiFetch/ApiStore";
 import ScrollButtons from "../ScrollBtn/ScrollButton";
 import { useNavigate } from "react-router-dom";
 
+
 export const Equipment = ({ equipment }) => {
 
   const scrollContainer = useRef(null);
@@ -32,6 +33,8 @@ export const Equipment = ({ equipment }) => {
 
   const handleCardClick = (navigate, id) => {
     navigate(`/DetailShow/${id}`, { state: { id } });
+    window.scrollTo(0, 0);
+
   };
   
   return (
@@ -46,12 +49,19 @@ export const Equipment = ({ equipment }) => {
                   <div key={index} className="col-sm-4 "  >
                     <div className="exercise-card"  onClick={() => handleCardClick(navigate,element.id)}>
                       <img src={element.gifUrl} alt={element.name} />
-                      <h3>{element.name}</h3>
-                      <p>{element.bodyPart}</p>
-                      <p>{element.target}</p>
-                      <p>`element.idelement.id ${element.id}`</p>
+                      <div className="card-body fw-bold ">
+        
+            <p className="card-text  float-left">
+         
+           
+                Equipment Used: <button className='btn btn-info '> {element.equipment.toUpperCase()}</button>  
+     
+            </p>
+            <p > Name: <button className='btn btn-info '>{element.name.toUpperCase()}</button>      </p>
+            </div>
+            </div>
                     </div>
-                  </div>
+              
                 ))}
             </div>
           </div>

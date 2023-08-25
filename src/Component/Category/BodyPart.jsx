@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchData, Exerciseoptions } from "../ApiFetch/ApiStore"; // Check this import
 import ScrollButtons from "../ScrollBtn/ScrollButton";
 import { useNavigate } from "react-router-dom";
-
+import gym from '../Image/gym-min.png'
 
 
 export const BodyPart = ({ bodypart }) => {
@@ -31,11 +31,9 @@ const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`;
 
   const handleCardClick = (navigate, id) => {
     navigate(`/DetailShow/${id}`, { state: { id } });
+    window.scrollTo(0, 0);
+
   };
-
-
-
-
 
   return (
 <div className="mt-5">
@@ -49,9 +47,15 @@ const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`;
               <div key={index} className="col-sm-4">
                       <div className="exercise-card " onClick={() => handleCardClick(navigate,element.id)}>
                   <img src={element.gifUrl} alt={element.name} />
-                  <h3>{element.name}</h3>
-                  <p>{element.bodyPart}</p>
-                  <p>{element.target}</p>
+                  <div className="card-body fw-bold" >
+                  <p className="card-text  float-left">
+         
+           
+         BodyPart Involved: <button className='btn btn-info card_button'> {element.bodyPart.toUpperCase()}</button>  
+
+     </p>
+     <p > Name: <button className='btn btn-info '>{element.name.toUpperCase()}</button>      </p>
+            </div>
                 </div>
               </div>
             ))}
