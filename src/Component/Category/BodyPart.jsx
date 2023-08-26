@@ -37,7 +37,7 @@ const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodypart}`;
 
   return (
 <div className="mt-5">
-  <h2>BodyPart Used: {bodypart.name}</h2>
+<h1 className=' text-white fw-bold text-center bg-dark'>Recommended Exercise Akin to BodyPart</h1>
   <div className="container-fluid">
     <div className="row">
       <div className="col-12">

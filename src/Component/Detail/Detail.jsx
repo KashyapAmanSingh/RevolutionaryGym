@@ -34,7 +34,9 @@ console.log("This is id of the category "+id+ id1)
   const { bodyPart, name, equipment, target, id: detailId, gifUrl } = detail;
 
   return (
-    <div>
+    <div className='bg-danger'>
+            <h1 className=' text-white fw-bold text-center bg-dark mb-0'>Detail Exercise </h1>
+
       {detail ? (
         <>
             <div className="container-fluid mb-5 mt-5">

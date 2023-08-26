@@ -38,7 +38,8 @@ export const Target = ({ target }) => {
 
   return (
     <div className="mt-5">
-      <h2>Target Used: {target.name}</h2>
+            <h1 className=' text-white fw-bold text-center bg-dark'>Recommended Exercise Akin to Target</h1>
+
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">

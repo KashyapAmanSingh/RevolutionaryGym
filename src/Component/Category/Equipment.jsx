@@ -39,7 +39,7 @@ export const Equipment = ({ equipment }) => {
   
   return (
     <div className="mt-5">
-      <h2>Equipment Used: {equipment.name}</h2>
+      <h1 className=' text-white fw-bold text-center bg-dark'>Recommended Exercise Akin to Equipment</h1>
       <div className='container-fluid'>
         <div className='row'>
           <div className="col-12">

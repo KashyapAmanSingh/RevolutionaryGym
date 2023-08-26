@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { fetchData, Exerciseoptions } from './ApiFetch/ApiStore';
 import { useNavigate } from 'react-router-dom';
+import gym from './Image/gym-min.png'
+import gym2 from './Image/ndgym-min.jpg'
 
 
 const Searched = () => {
@@ -37,6 +39,7 @@ const Searched = () => {
 
   const handleCardClick = (navigate, id) => {
     navigate(`/DetailShow/${id}`, { state: { id } });
+    
   };
   
 
@@ -67,22 +70,33 @@ const Searched = () => {
         </div>
       </div>
       <div className="container mt-3">
-        <div className="row">
-          {searchedExercise.length > 0 && searchedExercise.slice(page * 10 - 10, page * 10).map((data) => (
-            <div key={data.id} className="col-sm-4 mb-3"onClick={() => handleCardClick(navigate,data.id)}>
-              <div className="card" style={{ width: '100%' }}>
-                <img loading="lazy" className="card-img-top" src={data.gifUrl} alt={data.bodyPart} />
-                <div className="card-body">
-                  <p className="card-text">{data.bodyPart}</p>
-                  <p className="card-text">{data.name}</p>
-                  <p className="card-text">{data.equipment}</p>
-                  <p className="card-text">{data.target}</p>
-                  <p className="card-text"> {data.id}</p>
-                    </div>
-              </div>
+  <div className="row">
+    {searchedExercise.length > 0 && searchedExercise.slice(page * 10 - 10, page * 10).map((data) => (
+      <div key={data.id} className="col-sm-4 mb-3" onClick={() => handleCardClick(navigate, data.id)}>
+        <div className="card" style={{ width: '100%' }}>
+          <img loading="lazy" className="card-img-top" src={data.gifUrl} alt={data.bodyPart} />
+          <div className="card-body">
+          <div className='d-flex justify-content-between  '>
+            <p className="card-text">
+         
+                <img src={gym} alt="bodypart_image" id='bodypartimag' />
+             <button className='btn btn-info card_button'> {data.bodyPart}</button>  
+         
+            </p>
+            <p className="card-text">
+              <img src={gym2} alt="bodypart_image" id='bodypartimag' />
+              <button className='btn btn-info card_button ml-2' >{data.target}</button>  
+            
+            </p>
             </div>
-          ))}
+            </div>
+          </div>
         </div>
+ 
+    ))}
+  </div>
+</div>
+
         {searchedExercise.length > 0 && (
           <div className="row">
             <nav>
@@ -119,7 +133,7 @@ const Searched = () => {
         )}
 
       </div>
-    </div>
+
   );
 };
 

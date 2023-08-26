@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { youtubeOptions, fetchDataYoutube } from './ApiFetch/ApiStoreYoutube';
 
 const Video = (props) => {
@@ -23,28 +23,34 @@ const Video = (props) => {
 
   return (
     <div>
-      <div className="d-flex flex-row flex-wrap justify-content-center align-items-center" >
-        {video?.slice(0, 4)?.map((item, index) => {
-          const videoObject = item.video;
-          return (
-            <div key={index} >
-              <iframe
-                width="560"
-                height="315"
-                className="m-2"
-                src={`https://www.youtube.com/embed/${videoObject.videoId}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-              <div>Channel Name: {videoObject.channelName} </div>
-              <div>Title Name: {videoObject.title} </div>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className=" col-12 " >
+            <h1 className=' text-white fw-bold text-center bg-dark'>Recommended Related Video</h1>
+            <div className='      d-flex flex-row flex-nowrap overflow-auto'>
+              {video?.slice(0, 100)?.map((item, index) => {
+                const videoObject = item.video;
+                return (
+                  <>
+                    <div key={index} >
+                      <iframe
+                        width="560"
+                        height="315"
+                        className="m-2"
+                        src={`https://www.youtube.com/embed/${videoObject.videoId}`}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                      <div>Channel Name: {videoObject.channelName} </div>
+                      <div>Title Name: {videoObject.title} </div>
+                    </div>
+                  </>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
-    </div>
+          </div>   </div>   </div></div>
   );
 };
 
