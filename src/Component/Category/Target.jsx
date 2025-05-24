@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { fetchData, Exerciseoptions } from '../ApiFetch/ApiStore';
 import ScrollButtons from '../ScrollBtn/ScrollButton';
 import { useNavigate } from 'react-router-dom';
+import ShimmerEffect from '../ShimmerUI/ShimmerUI';
 
 
 
@@ -11,15 +12,14 @@ export const Target = ({ target }) => {
   const scrollContainer = useRef(null);
 
   const url = `https://exercisedb.p.rapidapi.com/exercises/target/${target}`;
-  const [targetData, setTarget] = useState(null);
-
+  const [targetData, setTarget] = useState([]);
 
 
   useEffect(() => {
     try {
       const fetchTarget = async () => {
         const AllTarget = await fetchData(url, Exerciseoptions);
-        setTarget(AllTarget);
+        setTarget([...AllTarget]);
       };
       fetchTarget();
     } catch (error) {
@@ -38,14 +38,16 @@ export const Target = ({ target }) => {
 
   return (
     <div className="mt-5">
-            <h1 className=' text-white fw-bold text-center bg-dark'>Recommended Exercise Akin to Target</h1>
+      <h1 className=' text-white fw-bold text-center bg-dark'>Recommended Exercise Akin to Target</h1>
 
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
             <div className="d-flex flex-row flex-nowrap overflow-auto" ref={scrollContainer}>
-              {targetData &&
-                targetData.slice(17).map((element, index) => (
+              {targetData.length > 0 &&
+                targetData.slice(0, 10).map((element, index) => (
+
+
                   <div key={index} className="col-sm-4">
                     <div className="exercise-card " onClick={() => handleCardClick(navigate, element.id)}>
                       <img src={element.gifUrl} alt={element.name} />
@@ -63,6 +65,8 @@ export const Target = ({ target }) => {
                     </div>
                   </div>
                 ))}
+              {!targetData.length && (<ShimmerEffect video={false} />
+              )}
             </div>
           </div>
         </div>
